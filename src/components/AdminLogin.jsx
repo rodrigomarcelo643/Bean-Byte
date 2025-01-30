@@ -16,7 +16,9 @@ const AdminLogin = () => {
   function dashboardNavigate() {
     navigate("/Admin");
   }
-
+  function LandingPage() {
+    navigate("/LandingPage");
+  }
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -65,7 +67,11 @@ const AdminLogin = () => {
               </form>
 
               <div className="mt-4 text-sm text-center">
-                <a href="#" className="text-[#b18b68] hover:underline">
+                <a
+                  href="#"
+                  onClick={LandingPage}
+                  className="text-[#b18b68] hover:underline"
+                >
                   Forgot Password?
                 </a>
               </div>
