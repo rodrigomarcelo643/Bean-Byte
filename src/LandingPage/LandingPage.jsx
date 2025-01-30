@@ -10,6 +10,9 @@ import logo from "../assets/main_logo.png";
 import About from "./About";
 import Products from "./Products";
 import Support from "./Support";
+import Boxes from "./Boxes";
+import { motion } from "framer-motion"; // Import Framer Motion
+import CustomerReview from "./CustomerReview";
 
 const LandingPage = () => {
   const [currentTab, setCurrentTab] = useState("home");
@@ -65,7 +68,7 @@ const LandingPage = () => {
     if (!isAutoPlay) {
       const timeoutId = setTimeout(() => {
         setIsAutoPlay(true); // Resume autoplay after a brief pause
-      }, 5000); // Wait for 5 seconds before restarting autoplay
+      }, 4000); // Wait for 5 seconds before restarting autoplay
 
       return () => clearTimeout(timeoutId);
     }
@@ -134,16 +137,10 @@ const LandingPage = () => {
         {/* Login and Sign Up on the Right (Visible on larger screens) */}
         <div className="hidden md:flex items-center space-x-6">
           <a
-            href="#login"
-            className="text-[17px] text-brown-600 hover:text-gray-800"
+            href="#Order"
+            className="text-[15px] shadow-lg border-2 bg-[#6F4E37] text-white border-[#6F4E37] py-1 px-7 hover:bg-[#e0bba1e1] hover:text-[#36322fe1] rounded-[10px] text-brown-600 hover:bg-brown-100"
           >
-            Login
-          </a>
-          <a
-            href="#signup"
-            className="text-[17px] border-2 border-[#6F4E37] py-1 px-7 hover:bg-[#6F4E37] hover:text-white rounded-[10px] text-brown-600 hover:bg-brown-100"
-          >
-            Sign Up
+            Order Now!
           </a>
         </div>
 
@@ -194,110 +191,129 @@ const LandingPage = () => {
         >
           Support
         </a>
-        <a href="#login" className="text-lg text-brown-600 hover:text-gray-800">
-          Login
-        </a>
+
         <a
-          href="#signup"
+          href="#Order"
           className="text-[17px] border-2 border-[#6F4E37] py-1 px-7 hover:bg-[#6F4E37] hover:text-white rounded-[10px] text-brown-600 hover:bg-brown-100"
         >
-          Sign Up
+          Order Now!
         </a>
       </div>
 
       {/* Main Content */}
       {currentTab === "home" && (
-        <section
-          className="flex flex-col md:flex-row items-center justify-between px-8 mt-18 bg-cover bg-center"
-          style={{ backgroundImage: `url(${rightDesign})` }}
-        >
-          <div className="w-full md:w-1/2 space-y-8 p-10">
-            <h1 className="text-4xl md:text-[40px] font-bold text-brown-600">
-              Make every day meaningful, one cup at a time.
-            </h1>
-            <div className="flex items-center space-x-4">
-              <div className="flex space-x-2">
-                <div className="relative bg-gray-300 p-1 rounded-full w-16 h-16 flex items-center justify-center">
-                  <img
-                    src={img1}
-                    alt="Profile 1"
-                    className="rounded-full w-20 h-20 object-cover"
-                  />
-                </div>
-                <div className="relative bg-gray-300 left-[-17px] p-1 rounded-full w-16 h-16 flex items-center justify-center">
-                  <img
-                    src={img2}
-                    alt="Profile 2"
-                    className="rounded-full  w-25 h-25 object-cover"
-                  />
-                </div>
-                <div className="relative bg-gray-300 p-1 left-[-34px] rounded-full w-16 h-16 flex items-center justify-center">
-                  <img
-                    src={img3}
-                    alt="Profile 3"
-                    className="rounded-full  w-25 h-25 object-cover"
-                  />
-                </div>
-              </div>
-
-              <p className="text-[18px] font-bold relative left-[-25px] text-[#977B60]">
-                Sip into serenity—where every cup is brewed to perfection, and
-                every moment feels like home.
-              </p>
-            </div>
-            <button className="px-8 py-3 bg-[#6F4E37] hover:bg-[#95735C] cursor-pointer mt-5 text-white text-[18px] rounded-[10px] hover:bg-brown-700 flex items-center space-x-2">
-              <span>Explore</span>
-              <FaChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="w-full md:w-1/2 bg-transparent p-7 py-10 rounded-md">
-            <div className="relative">
-              <div className="flex justify-center items-center space-x-2">
-                <button
-                  onClick={prevImage}
-                  className="absolute left-0 cursor-pointer hover:bg-[#B4ADAD] transform -translate-x-8 bg-[#D9D9D9] text-white rounded-full p-4"
-                >
-                  <img
-                    src={leftChevron}
-                    className="w-10 h-10"
-                    alt="Left Chevron"
-                  />
-                </button>
-                <div className="w-full max-w-xl mx-auto">
-                  <img
-                    src={images[currentIndex]}
-                    alt={`Carousel Image ${currentIndex + 1}`}
-                    className={`w-[280px] h-[450px] object-cover rounded-md mx-auto transition-all duration-500 ease-in-out ${animationClass}`}
-                  />
-                  <div className="flex justify-center space-x-2 mt-10">
-                    {images.map((_, index) => (
-                      <span
-                        key={index}
-                        className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out ${
-                          index === currentIndex
-                            ? "bg-[#6F4E37] border border-[#6F4E37] bg-opacity-100"
-                            : "border border-[#6F4E37] bg-transparent"
-                        }`}
-                        onClick={() => setCurrentIndex(index)}
-                      />
-                    ))}
+        <>
+          <section
+            className="flex flex-col md:flex-row items-center justify-between px-8 mt-18 bg-cover bg-center"
+            style={{ backgroundImage: `url(${rightDesign})` }}
+          >
+            <div className="w-full md:w-1/2 space-y-8 p-10">
+              <motion.h1
+                className="text-4xl md:text-[40px] font-bold text-brown-600"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                Make every day meaningful, one cup <br></br> at a time.
+              </motion.h1>
+              <div className="flex items-center space-x-4">
+                <div className="flex space-x-2">
+                  <div className="relative bg-gray-300 p-1 rounded-full w-16 h-16 flex items-center justify-center">
+                    <img
+                      src={img1}
+                      alt="Profile 1"
+                      className="rounded-full w-20 h-20 object-cover"
+                    />
+                  </div>
+                  <div className="relative bg-gray-300 left-[-17px] p-1 rounded-full w-16 h-16 flex items-center justify-center">
+                    <img
+                      src={img2}
+                      alt="Profile 2"
+                      className="rounded-full w-25 h-25 object-cover"
+                    />
+                  </div>
+                  <div className="relative bg-gray-300 p-1 left-[-34px] rounded-full w-16 h-16 flex items-center justify-center">
+                    <img
+                      src={img3}
+                      alt="Profile 3"
+                      className="rounded-full w-25 h-25 object-cover"
+                    />
                   </div>
                 </div>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-0 transform cursor-pointer hover:bg-[#B4ADAD] translate-x-8 bg-[#D9D9D9] text-white rounded-full p-3"
+
+                <motion.p
+                  className="text-[18px] font-bold relative left-[-25px] text-[#977B60]"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
                 >
-                  <img
-                    src={rightChevron}
-                    className="w-10.5 h-10.5"
-                    alt="Right Chevron"
-                  />
-                </button>
+                  Sip into serenity—where every cup is brewed to perfection, and
+                  every moment feels like home.
+                </motion.p>
+              </div>
+              <button className="px-8 py-3 bg-[#6F4E37] hover:bg-[#95735C] cursor-pointer mt-5 text-white text-[18px] rounded-[10px] hover:bg-brown-700 flex items-center space-x-2">
+                <span>Explore</span>
+                <FaChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="w-full md:w-1/2 bg-transparent p-7 py-10 rounded-md">
+              <div className="relative">
+                <div className="flex justify-center items-center space-x-2">
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-0 cursor-pointer hover:bg-[#B4ADAD] transform -translate-x-8 bg-[#D9D9D9] text-white rounded-full p-4"
+                  >
+                    <img
+                      src={leftChevron}
+                      className="w-10 h-10"
+                      alt="Left Chevron"
+                    />
+                  </button>
+                  <div className="w-full max-w-xl mx-auto">
+                    <img
+                      src={images[currentIndex]}
+                      alt={`Carousel Image ${currentIndex + 1}`}
+                      className={`w-[280px] h-[450px] object-cover rounded-md mx-auto transition-all duration-500 ease-in-out ${animationClass}`}
+                    />
+                    <div className="flex justify-center space-x-2 mt-10">
+                      {images.map((_, index) => (
+                        <span
+                          key={index}
+                          className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out ${
+                            index === currentIndex
+                              ? "bg-[#6F4E37] border border-[#6F4E37] bg-opacity-100"
+                              : "border border-[#6F4E37] bg-transparent"
+                          }`}
+                          onClick={() => setCurrentIndex(index)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-0 transform cursor-pointer hover:bg-[#B4ADAD] translate-x-8 bg-[#D9D9D9] text-white rounded-full p-3"
+                  >
+                    <img
+                      src={rightChevron}
+                      className="w-10.5 h-10.5"
+                      alt="Right Chevron"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
+          </section>
+
+          {/* Add spacing between section and Boxes */}
+          <div className="mt-10">
+            <Boxes />
           </div>
-        </section>
+          {/* Add spacing between section and Boxes */}
+          <div className="mt-10">
+            <CustomerReview />
+          </div>
+        </>
       )}
 
       {/* Render Section based on the active tab */}

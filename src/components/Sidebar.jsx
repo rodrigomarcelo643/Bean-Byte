@@ -369,7 +369,7 @@ export function Sidebar() {
             {/* Name and Subname */}
             <div className="flex flex-col items-start">
               <Typography className="text-gray-800 font-semibold">
-                Neil
+                Neil Delante
               </Typography>
               <Typography className="text-gray-500 text-sm">Admin</Typography>
             </div>
